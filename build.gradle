@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+}
+
+group 'me.gfoxi'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+
+    maven {
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+    }
+    maven {
+        url = "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
+    maven {
+        url = 'https://jitpack.io'
+    }
+    maven {
+        url = 'https://ci.frostcast.net/plugin/repository/everything/'
+    }
+    maven {
+        url = 'http://nexus.codecrafter47.de/content/repositories/public/'
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compileOnly group: 'codecrafter47.bungeetablistplus', name: 'bungeetablistplus-api-bukkit', version: '2.7.0'
+
+    implementation files('I:\\Programowanie\\MCJUST\\10.03\\patched.jar')
+}
+
+
+jar {
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+tasks.withType(Jar) {
+    destinationDir = file("G:\\")
+}
